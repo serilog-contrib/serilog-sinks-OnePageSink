@@ -19,8 +19,12 @@
 
 
   <ItemGroup>
+    
     <Content Include="assets\**\*.*">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <BuildAction>Content</BuildAction>
+      <CopyToOutput>true</CopyToOutput>
     </Content>
   </ItemGroup>
 
