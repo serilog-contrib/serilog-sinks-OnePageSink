@@ -20,6 +20,7 @@
   <ItemGroup>
     <Content Include="assets\**\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <PackagePath>/</PackagePath>
     </Content>
   </ItemGroup>
 
