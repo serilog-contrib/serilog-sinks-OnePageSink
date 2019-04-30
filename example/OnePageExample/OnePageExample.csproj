@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <PackageProjectUrl>https://github.com/nomailme/serilog-sinks-OnePageSink</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nomailme/serilog-sinks-OnePageSink</RepositoryUrl>
   </PropertyGroup>
 
 
