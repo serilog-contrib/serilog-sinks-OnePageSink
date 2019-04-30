@@ -13,6 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/nomailme/serilog-sinks-OnePageSink</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nomailme/serilog-sinks-OnePageSink</RepositoryUrl>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
 
 
@@ -20,7 +21,6 @@
   <ItemGroup>
     <Content Include="assets\**\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <PackagePath></PackagePath>
     </Content>
   </ItemGroup>
 
