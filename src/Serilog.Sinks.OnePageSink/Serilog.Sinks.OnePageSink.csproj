@@ -11,6 +11,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/nomailme/serilog-sinks-OnePageSink</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nomailme/serilog-sinks-OnePageSink</RepositoryUrl>
   </PropertyGroup>
 
 
