@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
 
 namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
 {
@@ -41,8 +41,8 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
             var assetPath = new PathString("/assets");
             PathString filePath = assetPath.Add(remainingPart);
 
-            Assembly assembly = typeof(Sinks.OnePageSink.StaticFileMiddleware.StaticFileMiddleware).GetTypeInfo().Assembly;
-            var resourceName = assembly.GetName().Name  + filePath.Value.Replace("/",".").Replace("@","_");
+            Assembly assembly = typeof(StaticFileMiddleware).GetTypeInfo().Assembly;
+            var resourceName = assembly.GetName().Name + filePath.Value.Replace("/", ".").Replace("@", "_");
             Stream resource = assembly.GetManifestResourceStream(resourceName);
 
             await next(httpContext);

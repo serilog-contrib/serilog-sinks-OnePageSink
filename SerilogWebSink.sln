@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog.Sinks.OnePageSink",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{EEA1B2EE-6ABE-440F-8CDE-579D15028066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnePageExample", "example\OnePageExample\OnePageExample.csproj", "{E3E92038-F4B4-4AB1-8388-4F8F46CD1BAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnePageExample", "example\OnePageExample\OnePageExample.csproj", "{E3E92038-F4B4-4AB1-8388-4F8F46CD1BAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

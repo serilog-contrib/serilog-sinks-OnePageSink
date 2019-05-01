@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using Serilog.Core;
 using Serilog.Events;
+using System;
 
 namespace Serilog.Sinks.OnePageSink
 {
