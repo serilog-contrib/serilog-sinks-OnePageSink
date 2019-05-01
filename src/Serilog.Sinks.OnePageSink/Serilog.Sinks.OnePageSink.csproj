@@ -16,16 +16,8 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
 
-
-
   <ItemGroup>
-    
-    <Content Include="assets\**\*.*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInPackage>true</IncludeInPackage>
-      <BuildAction>Content</BuildAction>
-      <CopyToOutput>true</CopyToOutput>
-    </Content>
+    <EmbeddedResource Include="assets\**\*.*" />
   </ItemGroup>
 
 

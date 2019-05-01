@@ -1,6 +1,0 @@
-﻿<ItemGroup>
-    <LogFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\LogFiles\*.config" />
-</ItemGroup>
-<Target Name="CopyLogFiles" BeforeTargets="Build">
-    <Copy SourceFiles="@(LogFiles)" DestinationFolder="$(TargetDir)CopiedLogFiles\" />
-</Target>

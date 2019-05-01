@@ -41,7 +41,7 @@ namespace OnePageExample
             {
                 routes.MapHub<EventHub>("/logevents");
             });
-            
+        
 
             app.UseMvc(routes =>
             {
@@ -72,7 +72,6 @@ namespace OnePageExample
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
-            services.AddSingleton<IFileSystemManager, FileSystemManager>();
             services.Configure<OnePageSinkOptions>(Configuration);
         }
     }
