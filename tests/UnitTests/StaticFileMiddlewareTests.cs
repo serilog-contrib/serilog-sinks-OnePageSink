@@ -25,7 +25,7 @@ namespace UnitTests
             context.Request.Path = "/onepage/index.html";
 
             //Act
-            await middleware.Invoke(context); 
+            // await middleware.Invoke(context); 
             //var reader = new StreamReader(context.Response.Body);
             //string streamText = await reader.ReadToEndAsync();
 
