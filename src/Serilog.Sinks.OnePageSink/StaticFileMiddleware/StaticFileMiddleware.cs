@@ -38,7 +38,7 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
 
             var remainingPart = remaining.Value.Replace("/~", string.Empty);
 
-            var assetPath = new PathString("/assets");
+            var assetPath = new PathString("/dist");
             PathString filePath = assetPath.Add(remainingPart);
 
             Assembly assembly = typeof(StaticFileMiddleware).GetTypeInfo().Assembly;
@@ -46,7 +46,11 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
             Stream resource = assembly.GetManifestResourceStream(resourceName);
 
             await next(httpContext);
-
+            if (resource == null)
+            {
+                return;
+            }
+            
             var newBody = new MemoryStream();
             await resource.CopyToAsync(newBody);
 

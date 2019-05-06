@@ -5,8 +5,8 @@
     <Version>1.0.0</Version>
     <Authors>Iskander Yarmukhametov</Authors>
   </PropertyGroup>
-  
-  
+
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -16,14 +16,14 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="assets\**\*.*" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\editorconfig\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="dist\**\*.*" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
