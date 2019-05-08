@@ -36,18 +36,19 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
                 return;
             }
 
-            var remainingPart = remaining.Value.Replace("/~", string.Empty);
+            string remainingPart = remaining.Value.Replace("/~", string.Empty);
 
             var assetPath = new PathString("/dist");
             PathString filePath = assetPath.Add(remainingPart);
 
             Assembly assembly = typeof(StaticFileMiddleware).GetTypeInfo().Assembly;
-            var resourceName = assembly.GetName().Name + filePath.Value.Replace("/", ".").Replace("@", "_");
+            string resourceName = assembly.GetName().Name + filePath.Value.Replace("/", ".").Replace("@", "_");
             Stream resource = assembly.GetManifestResourceStream(resourceName);
 
             
             if (resource == null)
             {
+                await next(httpContext);
                 return;
             }
             
@@ -55,13 +56,12 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
             await resource.CopyToAsync(newBody);
 
             newBody.Seek(0, SeekOrigin.Begin);
-            StreamReader reader = new StreamReader(newBody);
-            var content = reader.ReadToEnd();
+            var reader = new StreamReader(newBody);
+            string content = reader.ReadToEnd();
             newBody.Seek(0, SeekOrigin.Begin);
 
             httpContext.Response.StatusCode = (int)HttpStatusCode.OK;
             await httpContext.Response.WriteAsync(content);
-            await next(httpContext);
         }
     }
 }
