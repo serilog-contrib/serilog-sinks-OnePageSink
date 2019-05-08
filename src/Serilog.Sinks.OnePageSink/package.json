@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@aspnet/signalr": "^1.1.4",
+    "rxjs": "^6.5.1",
     "vue": "^2.6.10"
   }
 }
