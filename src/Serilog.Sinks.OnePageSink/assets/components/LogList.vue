@@ -17,7 +17,7 @@
 
 <script>
     import Subject from "rxjs";
-    import bufferTime from rxjs.operators;
+    import bufferTime from "rxjs/operators";
     import * as signalR from '@aspnet/signalr';
     import LogEntry from './LogEntry.vue'
 
