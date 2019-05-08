@@ -45,7 +45,7 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
             var resourceName = assembly.GetName().Name + filePath.Value.Replace("/", ".").Replace("@", "_");
             Stream resource = assembly.GetManifestResourceStream(resourceName);
 
-            await next(httpContext);
+            
             if (resource == null)
             {
                 return;
@@ -61,6 +61,7 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
 
             httpContext.Response.StatusCode = (int)HttpStatusCode.OK;
             await httpContext.Response.WriteAsync(content);
+            await next(httpContext);
         }
     }
 }
