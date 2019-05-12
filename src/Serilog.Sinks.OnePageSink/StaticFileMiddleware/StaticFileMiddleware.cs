@@ -26,7 +26,7 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
 
             if (requestPath.StartsWithSegments(new PathString(basePath), StringComparison.InvariantCultureIgnoreCase, out PathString remaining) == false)
             {
-                await next.Invoke(httpContext);
+                await next(httpContext);
                 return;
             }
 
@@ -39,8 +39,9 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
             {
                 var location = options?.Value?.BasePath ?? "/";
                 var finalDestination = $"{location}/".Replace("//", "/");
+                await next(httpContext);
                 httpContext.Response.Redirect(finalDestination);
-
+                return;
             }
 
             if (Path.HasExtension(remaining.Value) == false)

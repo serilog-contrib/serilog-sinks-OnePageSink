@@ -38,6 +38,48 @@ namespace UnitTests
         }
 
         [Fact]
+        public async Task Invoke_DefaultRoute_FileContents()
+        {
+            // Arrange
+            IOptions<OnePageSinkOptions> options = Options.Create(new OnePageSinkOptions());
+            var context = new DefaultHttpContext();
+            var responseBodyStream = new MemoryStream();
+
+            var middleware = new StaticFileMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
+
+            context.Features.Get<IHttpResponseFeature>().Body = responseBodyStream;
+            context.Request.Path = "/onepage";
+
+            //Act
+            await middleware.Invoke(context);
+
+            //Assert
+            Assert.Equal(302,context.Response.StatusCode);
+            Assert.True(true);
+        }
+
+
+        [Fact]
+        public async Task Invoke_UnknownPath_FileContents()
+        {
+            // Arrange
+            IOptions<OnePageSinkOptions> options = Options.Create(new OnePageSinkOptions());
+            var context = new DefaultHttpContext();
+            var responseBodyStream = new MemoryStream();
+
+            var middleware = new StaticFileMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
+
+            context.Features.Get<IHttpResponseFeature>().Body = responseBodyStream;
+            context.Request.Path = "";
+
+            //Act
+            await middleware.Invoke(context);
+
+            //Assert
+            Assert.True(true);
+        }
+
+        [Fact]
         public async Task Invoke_JavascriptFile_FileContents()
         {
             // Arrange
