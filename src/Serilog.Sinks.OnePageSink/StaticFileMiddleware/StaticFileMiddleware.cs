@@ -30,15 +30,15 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
                 return;
             }
 
-            if (Path.HasExtension(requestPath.Value) == false)
+            if (string.IsNullOrWhiteSpace(remaining.Value))
+            {
+                remaining = new PathString("/index.html");
+            }
+
+            if (Path.HasExtension(remaining.Value) == false)
             {
                 await next.Invoke(httpContext);
                 return;
-            }
-
-            if (string.IsNullOrWhiteSpace(remaining.Value))
-            {
-                remaining = new PathString("index.html");
             }
 
             string remainingPart = remaining.Value.Replace("/~", string.Empty);
@@ -57,13 +57,8 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
                 return;
             }
             
-            var newBody = new MemoryStream();
-            await resource.CopyToAsync(newBody);
-
-            newBody.Seek(0, SeekOrigin.Begin);
-            var reader = new StreamReader(newBody);
+            var reader = new StreamReader(resource);
             string content = reader.ReadToEnd();
-            newBody.Seek(0, SeekOrigin.Begin);
 
             httpContext.Response.StatusCode = (int)HttpStatusCode.OK;
             await httpContext.Response.WriteAsync(content);
