@@ -36,6 +36,11 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(remaining.Value))
+            {
+                remaining = new PathString("index.html");
+            }
+
             string remainingPart = remaining.Value.Replace("/~", string.Empty);
 
             var assetPath = new PathString("/dist");
