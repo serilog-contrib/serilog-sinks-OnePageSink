@@ -30,9 +30,17 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(remaining.Value))
+            if (string.Equals(remaining.Value, "/"))
             {
                 remaining = new PathString("/index.html");
+            }
+
+            if (string.IsNullOrWhiteSpace(remaining.Value))
+            {
+                var location = options?.Value?.BasePath ?? "/";
+                var finalDestination = $"{location}/".Replace("//", "/");
+                httpContext.Response.Redirect(finalDestination);
+
             }
 
             if (Path.HasExtension(remaining.Value) == false)
