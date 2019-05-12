@@ -6,4 +6,4 @@ Sink that displays real-time messages from Serilog in a separate web page. Uses 
 
 # Installation
 
-`Install-Package Serilog.Sinks.OnePageSink -Version 0.0.32`
+`Install-Package Serilog.Sinks.OnePageSink`
