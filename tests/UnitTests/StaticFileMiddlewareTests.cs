@@ -1,17 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Options;
 using Serilog.Sinks.OnePageSink;
-using Serilog.Sinks.OnePageSink.StaticFileMiddleware;
+using Serilog.Sinks.OnePageSink.OnePageSinkMiddleware;
+using System.IO;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace UnitTests
 {
-    public class StaticFileMiddlewareTests
+    public class OnePageSinkMiddlewareTests
     {
         [Fact]
         public async Task Invoke_IndexFile_FileContents()
@@ -20,8 +18,8 @@ namespace UnitTests
             IOptions<OnePageSinkOptions> options = Options.Create(new OnePageSinkOptions());
             var context = new DefaultHttpContext();
             var responseBodyStream = new MemoryStream();
-            
-            var middleware = new StaticFileMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
+
+            var middleware = new OnePageSinkMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
 
             context.Features.Get<IHttpResponseFeature>().Body = responseBodyStream;
             context.Request.Path = "/onepage/";
@@ -45,7 +43,7 @@ namespace UnitTests
             var context = new DefaultHttpContext();
             var responseBodyStream = new MemoryStream();
 
-            var middleware = new StaticFileMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
+            var middleware = new OnePageSinkMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
 
             context.Features.Get<IHttpResponseFeature>().Body = responseBodyStream;
             context.Request.Path = "/onepage";
@@ -54,7 +52,7 @@ namespace UnitTests
             await middleware.Invoke(context);
 
             //Assert
-            Assert.Equal(302,context.Response.StatusCode);
+            Assert.Equal(302, context.Response.StatusCode);
             Assert.True(true);
         }
 
@@ -67,7 +65,7 @@ namespace UnitTests
             var context = new DefaultHttpContext();
             var responseBodyStream = new MemoryStream();
 
-            var middleware = new StaticFileMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
+            var middleware = new OnePageSinkMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
 
             context.Features.Get<IHttpResponseFeature>().Body = responseBodyStream;
             context.Request.Path = "";
@@ -87,7 +85,7 @@ namespace UnitTests
             var context = new DefaultHttpContext();
             var responseBodyStream = new MemoryStream();
 
-            var middleware = new StaticFileMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
+            var middleware = new OnePageSinkMiddleware(async (innerHttpContext) => await Task.Delay(0), options);
 
             context.Features.Get<IHttpResponseFeature>().Body = responseBodyStream;
             context.Request.Path = "/onepage/~/js/build.js";

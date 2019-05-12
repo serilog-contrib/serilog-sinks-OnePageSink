@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Sinks.OnePageSink;
-using Serilog.Sinks.OnePageSink.StaticFileMiddleware;
+using Serilog.Sinks.OnePageSink.OnePageSinkMiddleware;
 
 namespace OnePageExample
 {
@@ -49,7 +49,7 @@ namespace OnePageExample
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseMiddleware<StaticFileMiddleware>();
+            app.UseMiddleware<OnePageSinkMiddleware>();
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Logger(Log.Logger)
                 .WriteTo.OnePageSink(hubContext)

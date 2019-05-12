@@ -6,14 +6,14 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
+namespace Serilog.Sinks.OnePageSink.OnePageSinkMiddleware
 {
-    public class StaticFileMiddleware
+    public class OnePageSinkMiddleware
     {
         private readonly RequestDelegate next;
         private readonly IOptions<OnePageSinkOptions> options;
 
-        public StaticFileMiddleware(RequestDelegate next, IOptions<OnePageSinkOptions> options)
+        public OnePageSinkMiddleware(RequestDelegate next, IOptions<OnePageSinkOptions> options)
         {
             this.next = next;
             this.options = options;
@@ -55,17 +55,17 @@ namespace Serilog.Sinks.OnePageSink.StaticFileMiddleware
             var assetPath = new PathString("/dist");
             PathString filePath = assetPath.Add(remainingPart);
 
-            Assembly assembly = typeof(StaticFileMiddleware).GetTypeInfo().Assembly;
+            Assembly assembly = typeof(OnePageSinkMiddleware).GetTypeInfo().Assembly;
             string resourceName = assembly.GetName().Name + filePath.Value.Replace("/", ".").Replace("@", "_");
             Stream resource = assembly.GetManifestResourceStream(resourceName);
 
-            
+
             if (resource == null)
             {
                 await next(httpContext);
                 return;
             }
-            
+
             var reader = new StreamReader(resource);
             string content = reader.ReadToEnd();
 
